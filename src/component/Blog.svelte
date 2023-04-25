@@ -1,13 +1,7 @@
 <script>
-  import { client } from "../lib/sanity";
+  import { client, urlFor } from "../lib/sanity";
   export let posts;
-  import imageUrlBuilder from '@sanity/image-url'
-
-  const builder = imageUrlBuilder(client)
-
-  function urlFor(source) {
-    return builder.image(source)
-  }
+  
 
 const months = ["","January","February","March","April","May","June","July","August","September","October","November","December"];
 </script>
@@ -27,7 +21,6 @@ const months = ["","January","February","March","April","May","June","July","Aug
         </div>
       </div>
       {#each posts as post, index }
-      {console.log(index)}
         {#if ((index+1) % 2 != 0)}
         
         <div key={post._id} class="row mb-30">

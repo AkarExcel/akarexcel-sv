@@ -2,14 +2,7 @@
   export let testimonial;
   import { browser } from '$app/environment';
   import Carousel from 'svelte-carousel'
-  import { client } from "../lib/sanity";
-  import imageUrlBuilder from '@sanity/image-url'
-
-  const builder = imageUrlBuilder(client)
-
-  function urlFor(source) {
-    return builder.image(source)
-  }
+  import { client, urlFor } from "../lib/sanity";
 
   if (browser) {
       // client-only code here
