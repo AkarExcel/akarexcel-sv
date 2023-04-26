@@ -19,6 +19,12 @@ export default defineType({
         maxLength: 96,
       },
     }),
+    defineField(    {
+      name: 'description',
+      title: 'Description',
+      type: 'string',
+      //validation: Rule => Rule.max(1500).warning(`A title shouldn't be more than 1500 characters.`),
+    }),
     defineField({
       name: 'author',
       title: 'Author',
