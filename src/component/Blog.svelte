@@ -1,6 +1,6 @@
-<script>
-  import { client, urlFor } from "../lib/sanity";
-  export let posts;
+<script lang="ts">
+import { client, urlFor } from "../lib/sanity";
+  export let posts:any;
   
 
 const months = ["","January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -33,11 +33,12 @@ const months = ["","January","February","March","April","May","June","July","Aug
           </div>
           <div class="col-md-6 valign">
             <div class="content">
+              {#if post.publishedAt}
               <div class="date">
-                
                 <h1>{post.publishedAt.match(/\d+/g)[2]}</h1>
                 <h6>{months[parseInt(post.publishedAt.match(/\d+/g)[1])]} {post.publishedAt.match(/\d+/g)[0]}</h6>
               </div>
+              {/if}
               <div class="cont">
                 <h5>{post.title}</h5>
                 <p>
@@ -61,10 +62,12 @@ const months = ["","January","February","March","April","May","June","July","Aug
         <div class="row mb-30">
           <div class="col-md-6 order2 valign">
             <div class="content">
+              {#if post.publishedAt}
               <div class="date">
                 <h1>{post.publishedAt.match(/\d+/g)[2]}</h1>
                 <h6>{months[parseInt(post.publishedAt.match(/\d+/g)[1])]} {post.publishedAt.match(/\d+/g)[0]}</h6>
               </div>
+              {/if}
               <div class="cont">
                 <h5>{post.title}</h5>
                 <p>

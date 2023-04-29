@@ -1,0 +1,9 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+
+.slide-down{
+    height: 100px;
+    -webkit-transition: height .3s ease;
+}

@@ -49,7 +49,7 @@
                 {testimony.description}
               </p>{" "}
               <span class="quote">
-                <img src="images/quot.png" alt="" />
+                <img src="/images/quot.png" alt="" />
               </span>
               <div class="info">
                 <div class="author-img">

@@ -66,6 +66,11 @@ export default defineType({
     defineArrayMember({
       type: 'code',
       title : 'Code Block'
+    }),
+    defineArrayMember({
+      type: 'table',
+      title: 'Tables'
     })
+
   ],
 })

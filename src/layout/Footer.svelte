@@ -1,4 +1,4 @@
-<footer>
+<footer style="padding-top: 17vh;">
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -12,7 +12,7 @@
         <div class="col-md-4">
           <ul class="nilsbrown-footer-social-link">
             <li>
-              <a href="https://www.youtube.com/channel/UCRDn5khfFXbwnn2st1-OdxA" 
+              <a href="https://www.youtube.com/@akar_excel" 
               target="_blank"
               rel='noreferrer'>
                 <i class="ti-youtube" />

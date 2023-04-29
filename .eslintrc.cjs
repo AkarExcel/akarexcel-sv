@@ -16,5 +16,9 @@ module.exports = {
 		browser: true,
 		es2017: true,
 		node: true
-	}
+	},
+	// rules: {
+	// 	no_console: 1,
+	// 	no_console: 2
+	// }
 };

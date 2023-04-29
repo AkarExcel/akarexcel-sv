@@ -1,153 +1,131 @@
 <script>
-import Image from 'next/image'
-import { useState } from 'react'
-import Link from 'next/link'
-import Script from 'next/script'
-import React from 'react'
-//import $ from "jquery"
-import NavList from './NavList'
-import FakeSuspense from './FalseSuspense'
+  import {browser} from '$app/environment'
+  import {goto} from '$app/navigation'
 
+  let st;
+  let show = false
+  let navbar;
+  let logo;
 
+  if(browser){
+    window.addEventListener('scroll', handleScroll);
 
-if(typeof window !== "undefined"){
-    // Menu Navigation
-    
+  }
 
-//     var OnePageNav = function () {
-//       var navToggler = $('.nilsbrown-js-nav-toggle');
-//      $(".smoothscroll[href^='#'], #nilsbrown-navbar ul li a[href^='#']").on('click', function (e) {
-//          e.preventDefault();
-//          var hash = this.hash;
-//          $('html, body').animate({
-//              scrollTop: $(hash).offset().top
-//          }, 700, 'easeInOutExpo', function () {
-//              window.location.hash = hash;
-//          });
-//      });
-//      $("#nilsbrown-navbar ul li a[href^='#']").on('click', function (e) {
-//          if (navToggler.is(':visible')) {
-//              navToggler.click();
-//          }
-//      });
-//  };
-//  OnePageNav();
- $(window).scroll(function () {
-     var $this = $(this)
-         , st = $this.scrollTop()
-         , navbar = $('.nilsbrown-header')
-         , logo = $(".nilsbrown-header .logo> img");
-     if (st > 150) {
-         if (!navbar.hasClass('scrolled')) {
-             navbar.addClass('scrolled');
-             logo.attr('src', 'images/logo-dark.png');
+  function handleScroll() {
+    st = window.scrollY;
+    navbar = document.querySelector('.nilsbrown-header')
+    logo = document.querySelector(".nilsbrown-header .logo> img")
+    if(st > 150){
+      if (!navbar?.classList.contains('scrolled')) {
+             navbar?.classList.add('scrolled');
+             logo?.setAttribute('src', '/images/logo-dark.png');
          }
-     }
-     if (st < 150) {
-         if (navbar.hasClass('scrolled')) {
-             navbar.removeClass('scrolled sleep');
-             logo.attr('src', 'images/logo-dark.png');
+    }
+    if (st < 150) {
+         if (navbar?.classList.contains('scrolled')) {
+             navbar?.classList.remove('scrolled','sleep');
+             logo?.setAttribute('src', '/images/logo-dark.png');
          }
      }
      if (st > 350) {
-         if (!navbar.hasClass('awake')) {
-             navbar.addClass('awake');
+         if (!navbar?.classList.contains('awake')) {
+             navbar?.classList.add('awake');
          }
      }
      if (st < 350) {
-         if (navbar.hasClass('awake')) {
-             navbar.removeClass('awake');
-             navbar.addClass('sleep');
+         if (navbar?.classList.contains('awake')) {
+             navbar?.classList.remove('awake');
+             navbar?.classList.add('sleep');
          }
      }
- });
-
-}
-
-const Navbar = () => {
-  const [show, setShow] = useState(false);
-
-  const Links = [{
-    name: 'Home',
-    link: '/',
-  },
-  {
-    name: 'About',
-    link: '/about'
-  },
-  {
-    name: 'Portfolio',
-    link: '/portfolio'
-  },
-  // {
-  //   name: "Resume",
-  //   link: "/resume"
-  // },
-  {
-    name: "Services",
-    link: "/services"
-  },
-  {
-    name: 'Blog',
-    link: '/blog'
-  },
-  {
-    name: 'Contact',
-    link: '/contact'
   }
-]
 
-  const handleShow = (e) => {
-    e.preventDefault();
-    setShow(!show)
-    if(typeof window !== "undefined"){
-    document.querySelector('body').classList.toggle("menu-open")
+  const handleShow = () => {
+      show = !show
+      if(browser){
+      document.body.classList.toggle("menu-open")
     }
   }
+
+  const navMenu = () => {
+    show = false
+  }
+
+  const Links = [
+      {
+      name: 'Home',
+      link: '/',
+      },
+      {
+        name: 'About',
+        link: '/about'
+      },
+      {
+        name: 'Portfolio',
+        link: '/portfolios'
+      },
+      // {
+      //   name: "Resume",
+      //   link: "/resume"
+      // },
+      {
+        name: "Services",
+        link: "/services"
+      },
+      {
+        name: 'Blog',
+        link: '/blog'
+      },
+      {
+        name: 'Contact',
+        link: '/contact'
+      }
+  ]
+
 </script>
 
-<nav class={`nilsbrown-menu ${show?"nilsbrown-menu-show": ""}`}id="nilsbrown-navbar-spy">
+<nav class={`nilsbrown-menu ${show?"nilsbrown-menu-show": ""}`} id="nilsbrown-navbar-spy">
     <div class="nilsbrown-menu-inner" id="nilsbrown-navbar">
       <ul class="list-unstyled">
 
-        {Links.map((link, index) => (
+        {#each Links as link, index}
  
           <li key={index} class={`${show?"is-show":""}`}>
-              <Link href={link.link}>
-              <a >{link.name}</a>
-              </Link>
+              <a href={link.link} on:click={navMenu}>
+              {link.name}
+              </a>
             
             </li>
-        ))}
+        {/each}
       </ul>
     </div>
   </nav>
-  {/* Header */}
+  <!-- Header -->
   <header class="nilsbrown-header">
     <div class="container">
       <div class="row align-items-center">
-        {/* Logo */}
+        <!-- Logo -->
         <div class="col-8 col-md-8">
           <div class="logo-wrap">
-            <Link href="/">
-            <a>
-              <div class="logo" style={{
-                paddingDown: "200px"
-              }}>
-                <Image 
+            <a href="/">
+            
+              <div class="logo" style="padding-down:200px"
+              >
+                <img 
                 src="/images/logo-dark.png"
                 alt=""
                 width={300}
                 height={75} />
               </div>
+            
             </a>
-            </Link>
           </div>
         </div>
-        {/* Menu Burger */}
+       <!-- Menu Burger -->
         <div class="col-4 col-md-4 text-right nilsbrown-menu-burger-wrap">
           {" "}
-          <a href="#" class={`nilsbrown-nav-toggle nilsbrown-js-nav-toggle ${show?" active": ""}`} onClick={handleShow}>
+          <a href="/#" class={`nilsbrown-nav-toggle nilsbrown-js-nav-toggle ${show?" active": ""}`} on:click={handleShow}>
             <i />
           </a>{" "}
         </div>

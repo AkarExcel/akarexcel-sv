@@ -4,9 +4,8 @@
   import Carousel from 'svelte-carousel'
   import { client, urlFor } from "../lib/sanity";
 
-  if (browser) {
-      // client-only code here
-  }
+  const width = window.innerWidth
+
 
 </script>
     <section id="portfolio" class="portfolio section-padding">
@@ -34,8 +33,8 @@
     {#if browser}
     <Carousel
       arrows={false}
-      particlesToShow={3}
-      particlesToScroll={2}
+      particlesToShow={(width > 720) ? 3 :1}
+      particlesToScroll={width> 720?2:1}
       pauseOnFocus={true}
       dots={false}
       >

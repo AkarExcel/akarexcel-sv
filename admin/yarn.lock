@@ -2012,6 +2012,15 @@
     scroll-into-view-if-needed "^2.2.20"
     tiny-invariant "1.0.6"
 
+"@sanity/table@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sanity/table/-/table-1.0.1.tgz#f26d3c0d0d73888dcac5a0b8f1ef458533a5f696"
+  integrity sha512-QeqTW6MAOS9FElIqV766yArhYVxeiWVYy8LvPlRbLzIfRVBhOm8sDTFQdULK6DuBMIMdV9vVZNRsHS5hHXfr9Q==
+  dependencies:
+    "@sanity/icons" "^2.0.0"
+    "@sanity/incompatible-plugin" "^1.0.4"
+    "@sanity/ui" "^1.0.0"
+
 "@sanity/types@3.9.0":
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/@sanity/types/-/types-3.9.0.tgz#a566271b91c4e47dfb54d8628d0b67a2dd8ef511"

@@ -19,4 +19,5 @@ export const schemaTypes = [
     service,
     faq,
     portfolio,
-    testimonial,]
+    testimonial,
+]

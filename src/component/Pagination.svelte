@@ -1,19 +1,24 @@
 <script>
-    export let data;
-    const {postPerPage, totalPosts , paginate} = data
-    const pageNumbers = [];
-    for(let i = 1 ;i <= Math.ceil(totalPosts / postPerPage); i++){
+      import {page} from '$app/stores'
+      export let postPerPage;
+      export let totalPosts;
+      export let paginate;
+      const pageNumbers = [];
+
+      for(let i = 1 ;i <= Math.ceil(totalPosts / postPerPage); i++){
         pageNumbers.push(i)
-    }
+      }
+      console.log($page)
 </script>
 
-<ul className="pagination-wrap align-center mb-30 mt-30">
+<ul class="pagination-wrap align-center mb-30 mt-30">
+
       {#each pageNumbers as num}
             <li 
             key={num} 
             id={num}
-            class={router.pathname == `/blog${num}` ? "active" : ""}>
-                  <a onClick={() => paginate(num)} href={`#${num}`}>
+            class={$page.url.pathname == `/blog${num}` ? "active" : ""}>
+                  <a on:click={() => paginate(num)} href={`#${num}`}>
                     {num}
                   </a>
             </li>

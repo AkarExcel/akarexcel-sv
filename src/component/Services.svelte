@@ -4,8 +4,19 @@ import { browser } from '$app/environment';
 import Carousel from 'svelte-carousel'
 
 
-if (browser) {
-    // client-only code here
+const width = window.innerWidth
+
+
+const responsive = () => {
+  if (width < 600){
+    return 1
+  }
+  else if (width >= 600 && width < 1000 ){
+    return 2
+  }
+  else {
+    return 3
+  }
 }
 
  
@@ -33,15 +44,16 @@ if (browser) {
     <div class="row">
       <div class="col-md-12">
     {#if browser}
-    <Carousel
-        arrows={false}
-        particlesToShow={3}
-        particlesToScroll={2}
-        pauseOnFocus={true}
-        dots={false}
-      >
+    {#if width> 720}
+      <Carousel
+          arrows={false}
+          particlesToShow={3}
+          particlesToScroll={2}
+          pauseOnFocus={false}
+          dots={true}
+        >
       {#each services as service, index}
-          <div key={service._id} class="item">
+          <div key={service._id} class="item" style="width: 305.333px; margin-right: 10px;">
             <a href={`/service/${service.slug.current}`}>
               {" "}
               <span class={`icon ${service.iconType}`} />
@@ -54,6 +66,51 @@ if (browser) {
           </div>
       {/each} 
 </Carousel>
+{:else if width >= 600 && width < 1000}
+<Carousel
+arrows={false}
+particlesToShow={2}
+particlesToScroll={1}
+pauseOnFocus={false}
+dots={true}
+>
+{#each services as service, index}
+<div key={service._id} class="item" style="width: 305.333px; margin-right: 10px;">
+  <a href={`/service/${service.slug.current}`}>
+    {" "}
+    <span class={`icon ${service.iconType}`} />
+    <h5>{service.title}</h5>
+    <p class='text'>
+    {service.description}
+    </p>
+    <div class="numb">{index+1> 9? "":0}{index+1}</div>
+  </a>
+</div>
+{/each} 
+</Carousel>
+{:else}
+<Carousel
+arrows={false}
+particlesToShow={1}
+particlesToScroll={1}
+pauseOnFocus={false}
+dots={true}
+>
+{#each services as service, index}
+<div key={service._id} class="item" style="width: 305.333px; margin-right: 10px;">
+  <a href={`/service/${service.slug.current}`}>
+    {" "}
+    <span class={`icon ${service.iconType}`} />
+    <h5>{service.title}</h5>
+    <p class='text'>
+    {service.description}
+    </p>
+    <div class="numb">{index+1> 9? "":0}{index+1}</div>
+  </a>
+</div>
+{/each} 
+</Carousel>
+{/if}
 {/if}
         <!-- <div class="owl-carousel owl-theme">
         
