@@ -125,7 +125,7 @@
        <!-- Menu Burger -->
         <div class="col-4 col-md-4 text-right nilsbrown-menu-burger-wrap">
           {" "}
-          <a href="/#" class={`nilsbrown-nav-toggle nilsbrown-js-nav-toggle ${show?" active": ""}`} on:click={handleShow}>
+          <a href="/#" class={`nilsbrown-nav-toggle nilsbrown-js-nav-toggle ${show?" active": ""}`} on:click|preventDefault={handleShow}>
             <i />
           </a>{" "}
         </div>

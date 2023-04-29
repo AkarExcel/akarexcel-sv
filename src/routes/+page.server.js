@@ -61,3 +61,6 @@ export async function load({ params }) {
       body: new Error("Internal Server Error")
     };
   }
+  export const prerender = false;
+  export const csr = true;
+  export const ssr = true;

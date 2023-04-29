@@ -1,6 +1,6 @@
 import { client } from '$lib/sanity'
 
-export async function load({ params }) {
+export async function load() {
     const query = `*[_type == "post"][0...100]{
         _id,
         title,
